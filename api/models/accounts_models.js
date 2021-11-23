@@ -8,10 +8,11 @@ const accounts={
         return db.query('select * from accounts where idaccount=?', [id], callback);
     },
     add: function(accounts, callback) {
-        return db.query('insert into accounts (idOwner,balance) values (?,?)', [accounts.idOwner, accounts.balance], callback);
+        return db.query('call lisaa_tili (?)', 
+			[ accounts.asiakasID], callback);
     },
     delete: function(id, callback) {
-        return db.query('delete from accounts where idaccount=?', [id], callback);
+        return db.query('call poista_tili(?)', [id], callback);
     },
     update: function(id, accounts, callback) {
         return db.query('update accounts set idOwner=?, balance=? where idaccount=?', [accounts.idOwner, accounts.balance, id], callback);

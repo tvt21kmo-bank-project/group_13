@@ -21,7 +21,7 @@ const bankautomat = {
         return db.query('call selaa_tilitapahtumia(?,?)',
         [postData.tiliID, postData.alkaen_tapahtumasta],
         callback);
-	}	
+	}
 };
-//exportilla viedään ulos bank objekti
+
 module.exports = bankautomat;
