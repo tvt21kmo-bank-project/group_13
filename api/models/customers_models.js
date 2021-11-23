@@ -1,4 +1,4 @@
- const db = require('../database');
+const db = require('../database');
 
 const customers={
     get: function(callback) {
@@ -7,14 +7,15 @@ const customers={
     getById: function(id, callback) {
         return db.query('select * from customers where idcustomer=?', [id], callback);
     },
-    add: function(customer, callback) {
-        return db.query('insert into customers (firstname,lastname) values (?,?)', [ customers.firstname, customers.lastname, ], callback);
+    add: function(customers, callback) {
+        return db.query('call lisaa_asiakas (?, ?, ?)', 
+			[ customers.etunimi, customers.sukunimi, customers.tiliID], callback);
     },
     delete: function(id, callback) {
-        return db.query('delete from customers where idcustomer=?', [id], callback);
+        return db.query('call poista_asiakas(?)', [id], callback);
     },
     update: function(id, customers, callback) {
-        return db.query('update customers set firstname=?,lastname=? where idcustomer=?', [ id, customers.firstname, customers.lastname], callback);
+        return db.query('update customers set firstname=?,lastname=? where idcustomer=?', [ customers.firstname, customers.lastname, id], callback);
     }
 }
 
