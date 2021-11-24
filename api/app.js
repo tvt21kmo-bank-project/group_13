@@ -11,6 +11,7 @@ var accRouter = require('./routes/accounts');
 var cardRouter = require('./routes/cards');
 var creditRouter = require('./routes/credit');
 var transRouter = require('./routes/transactions');
+var acccustRouter = require('./routes/accounts_has_customers');
 
 var app = express();
 
@@ -28,5 +29,6 @@ app.use('/accounts', accRouter);
 app.use('/cards', cardRouter);
 app.use('/credit', creditRouter);
 app.use('/transactions', transRouter);
+app.use('/accounts_has_customers', acccustRouter);
 
 module.exports = app;

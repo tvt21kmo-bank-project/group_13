@@ -29,7 +29,7 @@ function(request, response) {
         if (err) {
             response.json(err);
         } else {
-            response.json(request.body);
+            response.json(dbResult);
         }
     });
 });
