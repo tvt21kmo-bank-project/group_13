@@ -14,9 +14,9 @@ const credit={
     delete: function(id, callback) {
         return db.query('delete from credit where idcredit=?', [id], callback);
     },
-    update: function(id, credit, callback) {
-        return db.query('update credit set credit_limit=?, balance=?, idaccount=? where idcredit=?', 
-		[credit.credit_limit, credit.balance, credit.idaccount, id], callback);
+    muokkaa_luottoa: function(credit, callback) {
+        return db.query('call muokkaa_luottoa(?,?,?)', 
+		[credit.credit_limit, credit.balance, credit.idaccount], callback);
     }
 }
 
