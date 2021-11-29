@@ -45,10 +45,9 @@ function(request, response) {
     });
 });
 
-router.put('/:id',
+router.post('/muokkaa_luottoa',
 function (request, response) {
-    console.log(request.body)
-    credit.update(request.params.id, request.body, function(err, dbResult) {
+    credit.muokkaa_luottoa(request.body, function(err, dbResult) {
         if (err) {
             response.json(err);
         } else {
