@@ -15,7 +15,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_number_clicked();
+
 private:
     Ui::MainWindow *ui;
+    uint8_t vaihe;
 };
 #endif // MAINWINDOW_H
