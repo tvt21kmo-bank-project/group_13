@@ -18,8 +18,19 @@ public:
 private slots:
     void on_number_clicked();
 
+    void on_pushNosto_clicked();
+
+    void on_pushMuu_clicked();
+
+    void on_pushSaldo_clicked();
+
+    void on_push20_clicked();
+
 private:
     Ui::MainWindow *ui;
     uint8_t vaihe;
+    void set_main_ui();
+    void set_start_ui();
+    void set_credit_or_debit_ui();
 };
 #endif // MAINWINDOW_H
