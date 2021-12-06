@@ -9,8 +9,8 @@ public:
     QString cardID;
     QString pin;
     bool credit;
-    QString account;
-    QString balance;
+    double account;
+    double balance;
     QString withdrawal_amount;
     QString first_name;
     QString last_name;
