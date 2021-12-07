@@ -64,14 +64,16 @@ private:
     void set_main_ui();
     void set_start_ui();
     void set_credit_or_debit_ui();
-    void set_balance_ui();
+    void set_balance_ui(QString text);
     void set_withdraw_ui();
-    void set_transactions_ui();
+    void set_transactions_ui(QString text);
     void set_sum_ui();
     void set_alert_ui(int alert_time);
     void delay(int millisecondsToWait);
     void set_timer(int timeout);
     void login(QString korttiID, QString pin);
     void get_balance();
+    void get_transactions(int page);
+    void withdraw_money(QString sum);
 };
 #endif // MAINWINDOW_H
