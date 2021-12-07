@@ -11,9 +11,13 @@ public:
     bool credit;
     double account;
     double balance;
+    double credit_limit;
     QString withdrawal_amount;
     QString first_name;
     QString last_name;
+    int page;
+private:
+
 };
 
 #endif // CUSTOMER_H
