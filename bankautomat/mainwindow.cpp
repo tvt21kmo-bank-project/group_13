@@ -169,7 +169,7 @@ void MainWindow::get_transactions(int page)
     QUrlQuery post_data;
     QString tili_str = QString::number(customer->account);
     post_data.addQueryItem("tiliID", tili_str);
-    post_data.addQueryItem("alkaen_tapahtumasta", QString::number(page * 10));
+    post_data.addQueryItem("alkaen_tapahtumasta", QString::number(page * 9));
     QString site_url = "http://localhost:3000/bankautomat/selaa_tilitapahtumia/";
     request.setUrl(site_url);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -289,17 +289,18 @@ void MainWindow::on_balance_query(QNetworkReply *reply)
                             transaction_type = "Pano/C |";
                         }
                         QString transaction_datetime = jsonObj.value("transaction_time").toString().replace("Z","").replace("T", "|").replace(".000","|");
-                        QString transaction_amount = QString::number(jsonObj.value("transaction_amount").toDouble());
-                        for(int i = transaction_amount.size(); i < 5; i++){
+                        QString transaction_amount;
+                        for(int i = QString::number(jsonObj.value("transaction_amount").toDouble()).size(); i < 7; i++){
                             transaction_amount += " ";
                         }
-                        transaction_amount += "|";
+                        transaction_amount += QString::number(jsonObj.value("transaction_amount").toDouble());
+                        transaction_amount += "€|";
                         QString transaction_card =  QString::number(jsonObj.value("idcard").toDouble());
                         for(int i = transaction_card.size(); i < 5; i++){
                             transaction_card += " ";
                         }
                         transaction_card += "|";
-                        QString transactions_str = transaction_datetime + transaction_amount + transaction_card + transaction_type;
+                        QString transactions_str = transaction_datetime + transaction_card + transaction_type + transaction_amount;
                         qDebug() << transactions_str;
                         customer->transactions.push_back(transactions_str);
                     }
@@ -362,8 +363,6 @@ void MainWindow::on_transactions_query(QNetworkReply *reply)
                     qDebug() << "value2 is object";
                     jsonObj = value2.toObject();
                     if(array_count == 1){
-                        customer->balance = jsonObj.value("saldo").toDouble();
-                        qDebug() << "saldo:" << customer->balance;
                         QString transaction_type;
                         if(jsonObj.value("transaction_type").toDouble() == DEBIT_WITHDRAWAL){
                             transaction_type = "Nosto/D|";
@@ -384,18 +383,19 @@ void MainWindow::on_transactions_query(QNetworkReply *reply)
                             transaction_type = "Pano/C |";
                         }
                         QString transaction_datetime = jsonObj.value("transaction_time").toString().replace("Z","").replace("T", "|").replace(".000","|");
-                        QString transaction_amount = QString::number(jsonObj.value("transaction_amount").toDouble());
-                        for(int i = transaction_amount.size(); i < 5; i++){
+                        QString transaction_amount;
+                        for(int i = QString::number(jsonObj.value("transaction_amount").toDouble()).size(); i < 7; i++){
                             transaction_amount += " ";
                         }
-                        transaction_amount += "|";
+                        transaction_amount += QString::number(jsonObj.value("transaction_amount").toDouble());
+                        transaction_amount += "€|";
                         QString transaction_card =  QString::number(jsonObj.value("idcard").toDouble());
-                        for(int i = transaction_card.size(); i < 5; i++){
+                        for(int i = transaction_card.size(); i < 7; i++){
                             transaction_card += " ";
                         }
                         transaction_card += "|";
                         QString transaction_balance = QString::number(jsonObj.value("balance").toDouble());
-                        QString transactions_str = transaction_datetime + transaction_amount + transaction_card + transaction_type + transaction_balance;
+                        QString transactions_str = transaction_datetime + transaction_card + transaction_type + transaction_amount;
                         qDebug() << transactions_str;
                         customer->transactions.push_back(transactions_str);
                     }
@@ -488,10 +488,10 @@ void MainWindow::set_balance_ui()
     ui->textEdit->setTextCursor(cursor);
     ui->textEdit->setFontPointSize(16);
     if(!customer->credit){
-        ui->textEdit->append("Saldo: " + QString::number(customer->balance));
+        ui->textEdit->append("Saldo: " + QString::number(customer->balance) + "€");
     }
     else{
-        ui->textEdit->append("Saldo: " + QString::number(customer->balance) + " Luottoraja: " + QString::number(customer->credit_limit));
+        ui->textEdit->append("Saldo: " + QString::number(customer->balance) + "€ Luottoraja: " + QString::number(customer->credit_limit) + "€");
     }
     ui->textEdit->setFontPointSize(12);
     for(int i = 0; i < customer->transactions.size(); i++){
@@ -515,10 +515,11 @@ void MainWindow::set_transactions_ui()
     cursor.mergeBlockFormat(textBlockFormat);
     ui->textEdit->setTextCursor(cursor);
     ui->textEdit->setFontPointSize(12);
+    ui->textEdit->append("Pvm       |Aika    |Kortti |Tyyppi |Summa   |");
     for(int i = 0; i < customer->transactions.size(); i++){
         ui->textEdit->append(customer->transactions.at(i));
     }
-    for(int i = customer->transactions.size(); i < 10; i++){
+    for(int i = customer->transactions.size(); i < 9; i++){
         ui->textEdit->setFontPointSize(12);
         ui->textEdit->append(" ");
     }
@@ -526,11 +527,11 @@ void MainWindow::set_transactions_ui()
     ui->textEdit->append(" ");
     customer->transactions.clear();
     ui->textEdit->setFontPointSize(20);
-    ui->textEdit->append("SULJE             SEURAAVAT 10");
+    ui->textEdit->append("SULJE                SEURAAVAT");
     ui->textEdit->setFontPointSize(21);
     ui->textEdit->append(" ");
     ui->textEdit->setFontPointSize(20);
-    ui->textEdit->append("                  EDELLISET 10");
+    ui->textEdit->append("                     EDELLISET");
     phase = TRANSACTION_PHASE;
     set_timer(10);
 }
@@ -545,19 +546,19 @@ void MainWindow::set_withdraw_ui()
     cursor.mergeBlockFormat(textBlockFormat);
     ui->textEdit->setTextCursor(cursor);
     ui->textEdit->setFontPointSize(20);
-    ui->textEdit->append("20");
+    ui->textEdit->append("20€");
     ui->textEdit->setFontPointSize(21);
     ui->textEdit->append(" ");
     ui->textEdit->setFontPointSize(20);
-    ui->textEdit->append("50");
+    ui->textEdit->append("50€");
     ui->textEdit->setFontPointSize(21);
     ui->textEdit->append(" ");
     ui->textEdit->setFontPointSize(20);
-    ui->textEdit->append("100");
+    ui->textEdit->append("100€");
     ui->textEdit->setFontPointSize(21);
     ui->textEdit->append(" ");
     ui->textEdit->setFontPointSize(20);
-    ui->textEdit->append("SULJE                      200");
+    ui->textEdit->append("SULJE                     200€");
     ui->textEdit->setFontPointSize(21);
     ui->textEdit->append(" ");
     ui->textEdit->setFontPointSize(20);
@@ -586,6 +587,7 @@ void MainWindow::set_sum_ui()
     phase = SUM_PHASE;
     set_timer(10);
 }
+
 void MainWindow::set_alert_ui(QString alert_text, int alert_time)
 {
     timer->stop();
@@ -601,6 +603,7 @@ void MainWindow::set_alert_ui(QString alert_text, int alert_time)
     phase = ALERT_PHASE;
     delay(alert_time * 1000);
 }
+
 void MainWindow::on_pushNosto_clicked()
 {
     if(phase == MAIN_PHASE){
