@@ -1,6 +1,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 #include <QString>
+#include <QList>
 
 class Customer
 {
@@ -15,6 +16,7 @@ public:
     QString withdrawal_amount;
     QString first_name;
     QString last_name;
+    QList<QString> transactions;
     int page;
 private:
 
