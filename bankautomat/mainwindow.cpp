@@ -325,14 +325,15 @@ void MainWindow::on_withdrawal(QNetworkReply *reply)
                 if(value2.isObject()){
                     jsonObj = value2.toObject();
                     if(jsonObj.value("FAIL").toString() == "FAIL"){
-                        QString alert_text = "Tililläsi ei ole tarpeeksi rahaa.";
+                        QString alert_text;
+                        if(!customer->credit){
+                            alert_text = "Tililläsi ei ole tarpeeksi rahaa.";
+                        }
+                        else{
+                            alert_text = "Luottoraja ylitetty.";
+                        }
                         set_alert_ui(alert_text, 2);
-                        if(phase == WITHDRAW_PHASE){
-                            set_withdraw_ui();
-                        }
-                        else if(phase == SUM_PHASE){
-                            set_sum_ui();
-                        }
+                        set_withdraw_ui();
                     }
                     else if(jsonObj.value("OK").toString() == "OK"){
                         QString alert_text = "Nosto suoritettu onnistuneesti.";

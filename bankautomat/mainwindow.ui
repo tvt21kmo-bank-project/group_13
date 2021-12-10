@@ -35,7 +35,7 @@
       <x>0</x>
       <y>0</y>
       <width>671</width>
-      <height>768</height>
+      <height>1116</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
@@ -275,17 +275,17 @@ color: rgb(255, 255, 255);</string>
      </item>
      <item row="5" column="0" colspan="3">
       <layout class="QGridLayout" name="numberGrid">
-       <item row="0" column="2">
-        <widget class="QPushButton" name="pushTwo">
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pushThree">
          <property name="minimumSize">
           <size>
-           <width>83</width>
+           <width>82</width>
            <height>81</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>83</width>
+           <width>82</width>
            <height>81</height>
           </size>
          </property>
@@ -295,22 +295,60 @@ color: rgb(255, 255, 255);</string>
           </font>
          </property>
          <property name="text">
-          <string>2</string>
+          <string>3</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0" rowspan="4">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+       <item row="1" column="3">
+        <widget class="QPushButton" name="pushSix">
+         <property name="minimumSize">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>82</width>
+           <height>81</height>
           </size>
          </property>
-        </spacer>
+         <property name="maximumSize">
+          <size>
+           <width>82</width>
+           <height>81</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>6</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="pushBack">
+         <property name="minimumSize">
+          <size>
+           <width>82</width>
+           <height>81</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>82</width>
+           <height>81</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>C</string>
+         </property>
+        </widget>
        </item>
        <item row="2" column="2">
         <widget class="QPushButton" name="pushEight">
@@ -335,19 +373,6 @@ color: rgb(255, 255, 255);</string>
           <string>8</string>
          </property>
         </widget>
-       </item>
-       <item row="4" column="1" colspan="3">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item row="3" column="2">
         <widget class="QPushButton" name="pushZero">
@@ -376,18 +401,56 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="4" rowspan="4">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushOne">
+         <property name="minimumSize">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>82</width>
+           <height>81</height>
           </size>
          </property>
-        </spacer>
+         <property name="maximumSize">
+          <size>
+           <width>82</width>
+           <height>81</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushTwo">
+         <property name="minimumSize">
+          <size>
+           <width>83</width>
+           <height>81</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>83</width>
+           <height>81</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1">
         <widget class="QPushButton" name="pushSeven">
@@ -434,81 +497,6 @@ color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>9</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="pushBack">
-         <property name="minimumSize">
-          <size>
-           <width>82</width>
-           <height>81</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>82</width>
-           <height>81</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>C</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="pushSix">
-         <property name="minimumSize">
-          <size>
-           <width>82</width>
-           <height>81</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>82</width>
-           <height>81</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>6</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pushThree">
-         <property name="minimumSize">
-          <size>
-           <width>82</width>
-           <height>81</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>82</width>
-           <height>81</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>3</string>
          </property>
         </widget>
        </item>
@@ -588,32 +576,44 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="pushOne">
-         <property name="minimumSize">
+       <item row="4" column="1" colspan="3">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
           <size>
-           <width>82</width>
-           <height>81</height>
+           <width>20</width>
+           <height>40</height>
           </size>
          </property>
-         <property name="maximumSize">
+        </spacer>
+       </item>
+       <item row="0" column="4" rowspan="4">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
           <size>
-           <width>82</width>
-           <height>81</height>
+           <width>40</width>
+           <height>20</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-          </font>
+        </spacer>
+       </item>
+       <item row="0" column="0" rowspan="4">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="styleSheet">
-          <string notr="true"/>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
          </property>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </widget>
+        </spacer>
        </item>
       </layout>
      </item>
