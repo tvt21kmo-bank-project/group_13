@@ -106,13 +106,13 @@ void MainWindow::on_pushEnter_clicked()
         login(customer->cardID, customer->pin);
         break;
     case SUM_PHASE:
-        if(customer->withdrawal_amount.toInt() % 20 != 0){
-            QString alert_text = "Summan täytyy olla 20:lla jaollinen.";
+        if(customer->withdrawal_amount.toInt() % 20 != 0 && customer->withdrawal_amount.toInt() % 50 != 0){
+            QString alert_text = "Summan täytyy olla 20:lla tai 50:lla jaollinen.";
             customer->withdrawal_amount.clear();
             set_alert_ui(alert_text, 5);
         }
         else if(customer->withdrawal_amount.toInt() > 1000){
-            QString alert_text = "Maksimi nosto on 1000.";
+            QString alert_text = "Maksimi nosto on 1000€.";
             customer->withdrawal_amount.clear();
             set_alert_ui(alert_text, 5);
         }
@@ -202,10 +202,10 @@ void MainWindow::on_login(QNetworkReply *reply)
     QJsonDocument temp = QJsonDocument::fromJson(response.toUtf8());
     QJsonArray arr = temp.array();
     QJsonObject jsonObj;
-    foreach (const QJsonValue & value, arr){
+    for (const auto &value : arr){
         if(value.isArray()){
             QJsonArray array2 = value.toArray();
-            foreach(const QJsonValue & value2, array2){
+            for(const auto &value2 : array2){
                 if(value2.isObject()){
                     jsonObj = value2.toObject();
                 }
@@ -252,12 +252,12 @@ void MainWindow::on_balance_query(QNetworkReply *reply)
     QJsonArray arr = temp.array();
     QJsonObject jsonObj;
     int array_count = 0;
-    foreach (const QJsonValue & value, arr){
+    for (const auto &value : arr){
         if(value.isArray()){
             QJsonArray array2 = value.toArray();
             qDebug() << "value is array";
             array_count++;
-            foreach(const QJsonValue & value2, array2){
+            for(const auto &value2 : array2){
                 if(value2.isObject()){
                     qDebug() << "value2 is object";
                     jsonObj = value2.toObject();
@@ -318,10 +318,10 @@ void MainWindow::on_withdrawal(QNetworkReply *reply)
     QJsonDocument temp = QJsonDocument::fromJson(response.toUtf8());
     QJsonArray arr = temp.array();
     QJsonObject jsonObj;
-    foreach (const QJsonValue & value, arr){
+    for (const auto &value : arr){
         if(value.isArray()){
             QJsonArray array2 = value.toArray();
-            foreach(const QJsonValue & value2, array2){
+            for(const auto &value2 : array2){
                 if(value2.isObject()){
                     jsonObj = value2.toObject();
                     if(jsonObj.value("FAIL").toString() == "FAIL"){
@@ -354,12 +354,12 @@ void MainWindow::on_transactions_query(QNetworkReply *reply)
     QJsonArray arr = temp.array();
     QJsonObject jsonObj;
     int array_count = 0;
-    foreach (const QJsonValue & value, arr){
+    for (const auto &value : arr){
         if(value.isArray()){
             QJsonArray array2 = value.toArray();
             qDebug() << "value is array";
             array_count++;
-            foreach(const QJsonValue & value2, array2){
+            for(const auto &value2 : array2){
                 if(value2.isObject()){
                     qDebug() << "value2 is object";
                     jsonObj = value2.toObject();
